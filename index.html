@@ -1,0 +1,145 @@
+<html>
+
+<head>
+|<title>Smart Coaching — Attendance & Reports</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo">G</div>
+    <div>
+      <h1>gravimind Coaching </h1>
+      <div class="muted" style="font-size:12px">ALWAYS ON TOP</div>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:12px">
+    <nav>
+      <button id="navAttendance" class="active" onclick="showView('attendance')">Attendance</button>
+      <button id="navReports" onclick="showView('reports')">Reports</button>
+    </nav>
+    <div class="top-controls">
+      <select id="teacherSelect" aria-label="Select Teacher"></select>
+      <select id="batchSelect" aria-label="Select Batch"></select>
+      <input type="date" id="attDate">
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="grid">
+    <aside>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div class="muted" style="font-size:13px">Logged in as</div>
+            <div id="teacherName" style="font-weight:800">Teacher Name</div>
+          </div>
+          <div style="text-align:right">
+            <div class="muted" style="font-size:12px">Today</div>
+            <div id="todayDate" style="font-weight:700"></div>
+          </div>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat">
+            <div class="muted">Students</div>
+            <strong id="totalStudents">0</strong>
+          </div>
+          <div class="stat">
+            <div class="muted">Marked Absent</div>
+            <strong id="absentCount">0</strong>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <div class="muted" style="font-size:13px">Subject</div>
+          <div id="subjectName" style="font-weight:800">Subject</div>
+          <div class="muted" style="font-size:13px;margin-top:8px">Batch</div>
+          <div id="batchName" style="font-weight:700">Batch</div>
+        </div>
+      </div>
+
+      <div style="height:12px"></div>
+
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:700">Legend</div>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-direction:column">
+          <div style="display:flex;gap:8px;align-items:center"><div style="padding:6px 8px;border-radius:999px;background:rgba(6,166,255,0.08);color:var(--accent);font-weight:700">Present</div><div class="muted">Default</div></div>
+          <div style="display:flex;gap:8px;align-items:center"><div style="padding:6px 8px;border-radius:999px;background:rgba(255,90,90,0.08);color:#c33;font-weight:700">Absent</div><div class="muted">Marked absent</div></div>
+        </div>
+      </div>
+
+      <div class="footer"> gravimind © 2025</div>
+    </aside>
+
+    <section id="viewArea">
+      <!-- Attendance view -->
+      <div id="attendanceView" class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:800">Take Attendance</div>
+          <div style="display:flex;gap:8px">
+            <button class="btn ghost" onclick="resetAll()">Reset</button>
+            <button class="btn primary" onclick="openSummary()">Submit Attendance</button>
+            <button class="btn ghost" onclick="exportAttendanceCSV()">Export CSV</button>
+          </div>
+        </div>
+
+        <div class="muted" id="subInfo" style="margin-top:10px">Select teacher, batch and date, then toggle absent students</div>
+
+        <div style="margin-top:12px" class="card">
+          <table id="studentsTable">
+            <thead>
+              <tr><th style="width:70px">Roll</th><th>Student Name</th><th style="width:140px;text-align:center">Status</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Reports view -->
+      <div id="reportsView" class="card" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:800">Reports</div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <input type="text" id="studentSearch" placeholder="Search student name or roll" style="padding:8px;border-radius:8px;border:1px solid rgba(11,34,60,0.06)">
+            <button class="btn primary" onclick="generateReport()">Generate Report</button>
+            <button class="btn ghost" onclick="clearReport()">Clear</button>
+          </div>
+        </div>
+
+        <div id="reportsArea" style="margin-top:12px">
+          <div class="muted">Use the student search to view individual student report, or click "Generate Report" to see batch summary.</div>
+          <div id="reportContent" style="margin-top:12px"></div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<!-- Modal -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal-card">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="font-weight:800">Attendance Summary</div>
+      <button class="btn ghost" onclick="closeModal()">Close</button>
+    </div>
+    <div style="margin-top:12px" id="modalBody"></div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+      <button class="btn ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn primary" onclick="confirmSubmit()">Confirm & Save</button>
+    </div>
+  </div>
+</div>
+
+<script src="model.js"></script>
+<script src="view.js"></script>
+<script src="controller.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
