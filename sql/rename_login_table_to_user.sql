@@ -1,0 +1,2 @@
+ALTER TABLE login RENAME users;
+ALTER TABLE course ADD status VARCHAR(50);
