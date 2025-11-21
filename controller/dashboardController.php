@@ -20,6 +20,9 @@ class dashboardController
     public function run($accion)
     {
         switch ($accion) {
+            case 'admin':
+                $this->adminDashboard();
+                break;
             default:
                 $this->dashboard();
                 break;
@@ -49,6 +52,28 @@ class dashboardController
             "courseCount" => $courseCount,
             "coursedetails" => $coursedetails,
 
+        ));
+    }
+
+    /**
+     * Admin dashboard UI (UI-only view) — reuses same counts
+     */
+    public function adminDashboard()
+    {
+        $students = new student($this->Connection);
+        $studentsCount = $students->getTotalCount();
+        $teacher = new teacher($this->Connection);
+        $teacherCount = $teacher->getTotalCount();
+        $course = new course($this->Connection);
+        $courseCount = $course->getTotalCount();
+        $course = new course($this->Connection);
+        $coursedetails = $course->getAll();
+
+        $this->view("adminDashboard", array(
+            "studentCount" => $studentsCount,
+            "teacherCount" => $teacherCount,
+            "courseCount" => $courseCount,
+            "coursedetails" => $coursedetails,
         ));
     }
 

