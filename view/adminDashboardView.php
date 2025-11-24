@@ -30,19 +30,19 @@
     <section class="cards">
       <div class="card">
         <div class="card-title">Students</div>
-        <div class="card-value">123</div>
+        <div class="card-value"><?= htmlspecialchars($data['studentCount']) ?></div>
       </div>
       <div class="card">
         <div class="card-title">Teachers</div>
-        <div class="card-value">12</div>
+        <div class="card-value"><?= htmlspecialchars($data['teacherCount']) ?></div>
       </div>
       <div class="card">
         <div class="card-title">Courses</div>
-        <div class="card-value">8</div>
+        <div class="card-value"><?= htmlspecialchars($data['courseCount']) ?></div>
       </div>
       <div class="card">
         <div class="card-title">Today Present</div>
-        <div class="card-value">97%</div>
+        <div class="card-value">--</div> <!-- Placeholder, update when present data available -->
       </div>
     </section>
 
@@ -51,8 +51,7 @@
           <h2>Recent Courses</h2>
           <div class="recent-actions">
             <a href="?controller=teacher&action=add"><button class="btn">Add Teacher</button></a>
-            
-            <button class="btn">View All</button>
+            <a href="?controller=course&action=all"><button class="btn">View All</button></a>
           </div>
       </div>
       <table class="recent-table">
@@ -60,9 +59,26 @@
           <tr><th>ID</th><th>Course</th><th>Time</th><th>Status</th></tr>
         </thead>
         <tbody>
-          <tr><td>1</td><td>batch A</td><td>Morning</td><td><span class="tag started">Started</span></td></tr>
-          <tr><td>2</td><td>batch B</td><td>Afternoon</td><td><span class="tag started">Started</span></td></tr>
-          <tr><td>3</td><td>batch C</td><td>Evening</td><td><span class="tag started">Started</span></td></tr>
+          <?php foreach ($data['coursedetails'] as $course): ?>
+            <tr>
+              <td><?= htmlspecialchars($course['id']) ?></td>
+              <td><?= htmlspecialchars($course['name'] ?? $course['course'] ?? '') ?></td>
+              <td><?= htmlspecialchars($course['time'] ?? '') ?></td>
+              <td>
+                <?php
+                  $status = strtolower($course['status'] ?? '');
+                  $tagClass = '';
+                  $tagText = htmlspecialchars($course['status'] ?? '');
+                  if ($status === 'started') {
+                      $tagClass = 'tag started';
+                  } elseif ($status === 'upcoming') {
+                      $tagClass = 'tag upcoming';
+                  }
+                ?>
+                <span class="<?= $tagClass ?>"><?= $tagText ?></span>
+              </td>
+            </tr>
+          <?php endforeach; ?>
         </tbody>
       </table>
     </section>

@@ -1,31 +1,128 @@
-/* admin-dashboard.css - simple responsive admin UI (UI-only) */
-:root{--bg:#f5f7fb;--card:#fff;--accent:#2b7ae4;--muted:#6b7280}
-*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
-body{margin:0;background:var(--bg);color:#111}
-.adm-header{height:64px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid #e6e9ee}
-.brand{font-weight:700;color:var(--accent)}
-.adm-actions{color:var(--muted)}
-.adm-sidebar{width:220px;background:#fff;position:fixed;top:64px;bottom:40px;left:0;border-right:1px solid #e6e9ee;padding-top:20px}
-.adm-sidebar nav ul{list-style:none;margin:0;padding:0}
-.adm-sidebar nav li{padding:12px 20px;color:#333;cursor:pointer}
-.adm-sidebar nav li.active{background:var(--accent);color:#fff}
-.adm-main{margin-left:240px;padding:24px;padding-top:84px;min-height:calc(100vh - 124px)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px}
-.card{background:var(--card);padding:18px;border-radius:8px;box-shadow:0 1px 3px rgba(16,24,40,0.04);display:flex;flex-direction:column}
-.card-title{color:var(--muted);font-size:13px}
-.card-value{font-size:28px;font-weight:700;margin-top:8px}
-.recent{background:var(--card);padding:18px;border-radius:8px}
-.recent-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.btn{background:var(--accent);color:#fff;padding:8px 12px;border-radius:6px;border:none;cursor:pointer}
-.recent-table{width:100%;border-collapse:collapse}
-.recent-table th,.recent-table td{padding:10px 8px;text-align:left;border-bottom:1px solid #eef2f6}
-.tag{padding:4px 8px;border-radius:12px;font-size:12px;color:#fff}
-.tag.started{background:#16a34a}
-.tag.upcoming{background:#f59e0b}
-.adm-footer{height:40px;line-height:40px;text-align:center;color:var(--muted);position:fixed;left:220px;right:0;bottom:0;background:transparent}
+/* admin-dashboard.css - simple responsive admin UI specific layout and styles (imports shared colors) */
+@import url("./shared-colors.css");
 
-@media (max-width:800px){
-  .adm-sidebar{position:relative;width:100%;top:0;border-right:none;border-bottom:1px solid #e6e9ee}
-  .adm-main{margin-left:0;padding-top:20px}
-  .adm-footer{left:0}
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #111;
+}
+
+.adm-header {
+  height: 64px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid #e6e9ee;
+}
+
+.brand {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.adm-actions {
+  color: var(--muted);
+}
+
+.adm-sidebar {
+  width: 220px;
+  background: #fff;
+  position: fixed;
+  top: 64px;
+  bottom: 40px;
+  left: 0;
+  border-right: 1px solid #e6e9ee;
+  padding-top: 20px;
+}
+
+.adm-sidebar nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.adm-sidebar nav li {
+  padding: 12px 20px;
+  color: #333;
+  cursor: pointer;
+}
+
+.adm-sidebar nav li.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.adm-main {
+  margin-left: 240px;
+  padding: 24px;
+  padding-top: 84px;
+  min-height: calc(100vh - 124px);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.recent {
+  background: var(--card);
+  padding: 18px;
+  border-radius: 8px;
+}
+
+.recent-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.recent-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.recent-table th,
+.recent-table td {
+  padding: 10px 8px;
+  text-align: left;
+  border-bottom: 1px solid #eef2f6;
+}
+
+.adm-footer {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: var(--muted);
+  position: fixed;
+  left: 220px;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+}
+
+@media (max-width: 800px) {
+  .adm-sidebar {
+    position: relative;
+    width: 100%;
+    top: 0;
+    border-right: none;
+    border-bottom: 1px solid #e6e9ee;
+  }
+  .adm-main {
+    margin-left: 0;
+    padding-top: 20px;
+  }
+  .adm-footer {
+    left: 0;
+  }
 }
