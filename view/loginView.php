@@ -3,6 +3,7 @@
 <head>
     <title>GRAVITAS TECHNOLOGY</title>
     <link rel="stylesheet" href="./view/css/login.css">
+    <link rel="stylesheet" href="./view/css/failurePopUp.css">
 </head>
 
 <body>
@@ -19,6 +20,16 @@
             <input type="password" id="pass" name="pass" placeholder="Password" required>
             <div id="submit"><button type="submit">login</button></div>
         </form>
-       </body>
-
+    </div>
+    </body>
 </html>
+
+<script src="./view/failurePopup.js"></script>
+
+<?php if (!empty($data['error'])): ?>
+<script>
+    window.onload = () => {
+        showModal("<?php echo addslashes($data['error']); ?>");
+    };
+</script>
+<?php endif; ?>

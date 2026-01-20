@@ -1,0 +1,102 @@
+/* Overlay */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Popup */
+.modal {
+    font-family: 'Segoe UI', sans-serif;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 24px;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    border-top: 5px solid #ff5e5e;
+    box-shadow: 0 -10px 25px rgba(0,0,0,0.15);
+    animation: slideUp 0.4s ease-out;
+    position: relative;
+}
+
+/* Close */
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 22px;
+    cursor: pointer;
+    color: #999;
+}
+
+/* Content */
+.modal-icon i {
+  font-size: 72px;
+  color: #ed074c;
+}
+
+
+.modal h3 {
+    color: #3F3D89;
+    margin-bottom: 10px;
+}
+
+.modal p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+/* Button */
+.modal button {
+    background: #3F3D89;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+}
+
+/* Animations */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Desktop style */
+@media (min-width: 600px) {
+    .modal {
+        border-radius: 20px;
+        margin-bottom: auto;
+        margin-top: auto;
+        animation: slideUpDesktop 0.4s ease-out;
+    }
+
+    @keyframes slideUpDesktop {
+        from {
+            transform: translateY(40px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}

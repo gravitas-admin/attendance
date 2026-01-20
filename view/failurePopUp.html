@@ -1,0 +1,19 @@
+<!-- Modal -->
+<div class="modal-overlay" id="modal">
+    <div class="modal">
+        <span class="modal-close" onclick="closeModal()">×</span>
+        <div class="modal-icon"><i class="fa-regular fa-circle-xmark fa-beat-fade" style="color: #ed074c;"></i></div>
+        <h3> LOGIN FAILED</h3>
+        <button onclick="retryAction()">Try Again</button>
+    </div>
+</div>
+
+<script>
+function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+}
+
+function retryAction() {
+    alert('Retrying...');
+    closeModal();
+}
