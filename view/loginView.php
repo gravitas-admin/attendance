@@ -9,10 +9,8 @@
 <body>
     <div class="login-form">
         <div id="head">GRAVITAS TECHNOLOGY</div>
-        <?php $error = $data ? $data['error'] : '';
-        if ($error != '') { ?>
-            <div class='error'><?php echo $data['error'] ?></div>
-        <?php } ?>
+        <?php if (!empty($data['error'])): ?>
+            
         <form name="f1" action="?controller=user&action=login"  method="POST">
             <div id="head">User name</div>
             <input type="text" id="user" name="user" placeholder="User name" required>
@@ -21,15 +19,20 @@
             <div id="submit"><button type="submit">login</button></div>
         </form>
     </div>
-    </body>
-</html>
-
-<script src="./view/failurePopup.js"></script>
-
-<?php if (!empty($data['error'])): ?>
+    <?php include __DIR__ . "/failurePopUp.html"; ?>
+    <script src="./view/failurePopup.js"></script>
+    
+    <?php if (isset($data['error']) && $data['error'] !== ''): ?>
 <script>
-    window.onload = () => {
+    window.onload = function () {
         showModal("<?php echo addslashes($data['error']); ?>");
     };
 </script>
 <?php endif; ?>
+
+    <?php endif; ?>
+
+    </body>
+</html>
+
+
