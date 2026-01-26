@@ -41,8 +41,11 @@ class usersController
         //We create the user object
         // $user = new user($this->Connection);
         //We get all the user
-        //We load the index view and pass values to it
-        $this->view("login", array());
+        //We load the index view and pass values to i
+        $this->view("login", array(
+        "error" => ""   // ✅ ALWAYS SET
+    ));
+
     }
 
     /**
@@ -62,6 +65,7 @@ class usersController
         if (count($user) == 1) {
             $this->startSession($username);
             header("Location: " . '?controller=dashboard');
+            exit;
         } else {
             $this->view("login", array(
                 "error" => "Invaid User Name or Password",
