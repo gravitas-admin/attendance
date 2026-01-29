@@ -9,6 +9,7 @@
     <title>GRAVITAS</title>
     <link rel="stylesheet" href="./view/css/common.css">
     <link rel="stylesheet" href="./view/css/teacher.css">
+    <link rel="stylesheet" href="./view/css/addteacher.css">
     <script src="https://kit.fontawesome.com/cf362c4466.js" crossorigin="anonymous">
         let menuicn = document.querySelector(".menuicn");
         let nav = document.querySelector(".navcontainer");
@@ -83,7 +84,7 @@
         <div class="report-container">
             <div class="report-header">
                 <h1 class="recent-Articles">Recent Teacher</h1>
-                <a href="?controller=teacher&action=add"><button class="view">Add New</button></a>
+                <button class="view" id="newTeacher">Add New</button>
             </div>
             <div class="report-body">
                 <div class="report-topic-heading">
@@ -109,7 +110,8 @@
         </div>
     </div>
     </div>
-    <script src="./index.js"></script>
-</body>
+        <?php include('addTeacherModal.php'); ?>
 
+
+</body>
 </html>

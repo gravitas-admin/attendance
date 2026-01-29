@@ -95,63 +95,27 @@
                     
                     <form action ="?controller=teacher&action =save" class="form- container" method="post">
             <!-- <h2> Add Teacher </h2> -->
-            <table>
-               
-                <tr>
-                    <td>Enter Name:</td>
-                    <td> <input type="text" name="name" required class="input"> </td>
-                </tr>
+        
+<script>
+    // Change "addTeacherBtn" to your existing button's ID
+    const addBtn = document.getElementById('newTeacher'); // replace with your actual button ID
+    const modal = document.getElementById('teacherModal');
+    const closeBtn = document.getElementById('closeModal');
 
-                <tr>
-                    <td>Gender:</td>
-                    <td> <input type="radio" name="gender" required >Male <input type="radio" name="gender" required >Female </td>
-                </tr>
-                   
-                <tr>
-                    <td>Enter Address:</td>
-                    <td> <textarea name="address" required class="input"> </textarea></td>
-                </tr>
+    addBtn.addEventListener('click', () => {
+        modal.style.display = 'flex';   // show modal
+        setTimeout(() => modal.classList.add('show'), 50); // trigger slide animation
+    });
 
-                <tr>
-                    <td>Enter Email:</td>
-                    <td> <input type="email" name="email" required class="input"> </td>
-                </tr>
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove('show');
+        setTimeout(() => modal.style.display = 'none', 500);
+    });
 
-                <tr>
-                    <td>Enter Contact No:</td>
-                    <td> <input type="text" name="contact"  maxlength="10" class="input" required> </td>
-                </tr>
-
-                <tr>
-                    <td>Enter Adhar NO:</td>
-                    <td> <input type="text" name="adharno"  maxlength="12" class="input" required> </td>
-                </tr>
-
-                <tr>
-                    <td>Enter Joining Date:</td>
-                    <td> <input type="date" name="joiningdate" class="input" required> </td>
-                </tr>
-
-                <tr>                    
-                    <td>Enter Status:</td>
-                    <td> Active </td>
-                </tr>
-                
-                <tr>
-                    <td>Enter Salary:</td>
-                    <td> <input type="text" name="salary"  class="input" required> </td>
-                </tr>
-                
-            </table> 
-        </form>
-                </div>
-                <div class="items">
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <script src="./index.js"></script>
-</body>
-</html>
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 500);
+        }
+    });
+</script>
